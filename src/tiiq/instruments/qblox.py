@@ -47,9 +47,6 @@ class Pulsar_QCM(Instrument):
     def set_reference_clock_external (self):
     #set external reference clock QRM and QCM
 
-	def set_reference_clock_external (self):
-	#set external reference clock QRM
-
 	def setup (self, params):
 	#Function for setting up the QRM waveforms
 
