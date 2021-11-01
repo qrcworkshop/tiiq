@@ -142,15 +142,15 @@ class Pulsar_QRM():
         self.wave_and_prog_dict = wave_and_prog_dict
 
 	#Destructoras
-	def _reset(self):
+    def _reset(self):
         #reset QRM
         self.pulsar_qrm.reset()
 
-	def stop(self):
+    def stop(self):
 	    #stop current sequence running in QRM
         self.pulsar_qrm.stop_sequencer()
 
-	def close(self):
+    def close(self):
 	    #close connection to QRM
         self.pulsar_qrm.close()
 
@@ -214,11 +214,10 @@ class Pulsar_QCM():
         mod_signals = np.array(result)
 
         #Waveform dictionary (data will hold the sampples and index will be used to select the waveforms in the instrumment).
-        waveforms =
-        {
-            "modI_qcm_1": {"data": [], "index": 0},
-            "modQ_qcm_1": {"data": [], "index": 1}
-        }
+        waveforms = {
+                        "modI_qcm_1": {"data": [], "index": 0},
+                        "modQ_qcm_1": {"data": [], "index": 1}
+                    }
 
         # adding mixer offsets
         waveforms["modI_qcm_1"]["data"] = mod_signals[:,0]+self.offset_i
