@@ -37,7 +37,7 @@ class Pulsar_QRM():
         self.qrm = pulsar_qrm(label, ip)
 
     #QRM Configuration method
-    def setup(QRM_info: dict):
+    def setup(self, QRM_info: dict):
         '''
         Function for setting up the Qblox QRM parameters
         Params example:
@@ -53,11 +53,11 @@ class Pulsar_QRM():
             }
         '''
         #Set up instrument integration and modulation parameters
-        self.start_sample = QRM_info[start_sample]
-        self.hardware_avg = QRM_info[hardware_avg]
-        self.integration_length = QRM_info[integration_length]
-        self.sampling_rate = QRM_info[sampling_rate]
-        self.mode = QRM_info[mode]
+        self.start_sample = QRM_info['start_sample']
+        self.hardware_avg = QRM_info['hardware_avg']
+        self.integration_length = QRM_info['integration_length']
+        self.sampling_rate = QRM_info['sampling_rate']
+        self.mode = QRM_info['mode']
 
 
         self._reset() #reset instrument from previous state
@@ -142,7 +142,7 @@ class Pulsar_QRM():
         self.wave_and_prog_dict = wave_and_prog_dict
 
 	#Destructoras
-	def _reset (self):
+	def _reset(self):
         #reset QRM
         self.pulsar_qrm.reset()
 
