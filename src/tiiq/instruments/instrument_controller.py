@@ -33,10 +33,9 @@ class InstrumentController():
         self.LO_qcm.set_frequency(LO_qcm_freq)
 
         #setting up acquisition_controller for real time plotting and control
-        self.MC.setup()
+        self.ac.setup()
 
         #setting up QRM parameters
-        #Decidir si los parametros de integracion y modulacion deben ir aqui o en la genracion de la secuencia!!!!
         """
         QRM readOut Integration and demodulation parameters
         Dict example for QRM
