@@ -12,7 +12,7 @@ import xarray as xr
 
 #from qcodes import ManualParameter, Parameter
 #from pathlib import Path
-#from quantify.data.handling import get_datadir, set_datadir
+from quantify_core.data.handling import get_datadir, set_datadir
 #from quantify.measurement import MeasurementControl
 #from quantify.measurement.control import Settable, Gettable
 #import quantify.visualization.pyqt_plotmon as pqm
@@ -61,8 +61,8 @@ class Pulsar_QRM():
 
 
         self._reset() #reset instrument from previous state
-        self._set_reference_clock(QRM_info[ref_clock]) #set reference clock source
-        self.set_data_dictionary(QRM_info[data_dictionary]) #set data directory for generated waveforms
+        self._set_reference_clock(QRM_info['ref_clock']) #set reference clock source
+        self.set_data_dictionary(QRM_info['data_dictionary']) #set data directory for generated waveforms
         self.specify_acquisitions() #specify acquisitions params in QRM
         self.enable_hardware_averaging() #specify QRM HW averaging
         self.configure_sequencer_sync() #enable sequencer sync
@@ -243,22 +243,23 @@ class Pulsar_QCM():
             self.qcm.sequencer0_waveforms_and_program(os.path.join(os.getcwd(), "qcm_sequence.json"))
             self.wave_and_prog_dict = wave_and_prog_dict
 
-    def set_gain(gain):
+    def set_gain(self, gain):
         #set gain of the QCM
         #print(slef.qcm.sequencer0_gain_awg_path0())
         self.qcm.sequencer0_gain_awg_path0(gain)
         self.qcm.sequencer0_gain_awg_path1(gain)
         #print(qcm.pulsar_qcm.sequencer0_gain_awg_path0())
+    
+    #Destructoras
 
-	#Destructoras
-	def _reset (self):
-        #reset QRM
+    def _reset(self):
+         #reset QRM
         self.pulsar_qcm.reset()
 
-	def stop(self):
+    def stop(self):
 	    #stop current sequence running in QRM
         self.qcm.stop_sequencer()
 
-	def close(self):
+    def close(self):
 	    #close connection to QRM
         self.qcm.close()
