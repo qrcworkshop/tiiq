@@ -12,7 +12,7 @@ class InstrumentController():
     """
     InstrumentController class to interface and provide shortcut to instrument functions
     """
-    def __init__():
+    def __init__(self):
         #instanciate and connect all setup hardware: AWG, QCM y QRM (parte de instantiate_instruments de Ramiro)
         self.LO_qrm = SGS100A("LO_qrm", '192.168.0.7')
         self.LO_qcm = SGS100A("LO_qcm", '192.168.0.8')
