@@ -125,7 +125,7 @@ class Pulsar_QRM():
         #set Q1ASM sequence to be executed in the QRM
         self.seq_prog = seq
 
-    def upload_waveforms(self):
+    def upload_waveforms(self, waveforms):
         # Reformat waveforms to lists if necessary.
         for name in waveforms:
             if str(type(self.waveforms[name]["data"]).__name__) == "ndarray":
@@ -144,15 +144,15 @@ class Pulsar_QRM():
 	#Destructoras
     def _reset(self):
         #reset QRM
-        self.pulsar_qrm.reset()
+        self.qrm.reset()
 
     def stop(self):
 	    #stop current sequence running in QRM
-        self.pulsar_qrm.stop_sequencer()
+        self.qrm.stop_sequencer()
 
     def close(self):
 	    #close connection to QRM
-        self.pulsar_qrm.close()
+        self.qrm.close()
 
 
 class Pulsar_QCM():
@@ -195,7 +195,7 @@ class Pulsar_QCM():
     def modulate_envolope(self):
         #Waveform UP coversion
         std = self.leng/5
-        print(f'parsed amp = {amp} V')
+        print(f'parsed amp = {self.amp} V')
         if self.wf_type == 'Block':
             envelope_i = self.amp*np.ones(self.leng)
             envelope_q = self.amp*np.ones(self.leng)
@@ -253,7 +253,7 @@ class Pulsar_QCM():
 
     def _reset(self):
          #reset QRM
-        self.pulsar_qcm.reset()
+        self.qcm.reset()
 
     def stop(self):
 	    #stop current sequence running in QRM
